@@ -24,5 +24,18 @@ namespace SalesWebMvc.Controllers
 
             return View(list);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Seller seller)
+        {
+            _sellersService.Insert(seller);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
